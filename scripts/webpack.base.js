@@ -136,11 +136,24 @@ module.exports = function (webpackEnv) {
           ),
         },
         {
-          test: /\.(png|jpe?g|svg|gif)$/,
+          test: /\.(png|jpe?g|gif)$/,
           type: "asset",
           generator: {
             filename: "images/[contenthash:8][ext][query]",
           },
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            "babel-loader",
+            {
+              loader: "@svgr/webpack",
+              options: {
+                babel: false,
+                icon: true,
+              },
+            },
+          ],
         },
         {
           test: /\.(eot|ttf|woff|woff2)$/,

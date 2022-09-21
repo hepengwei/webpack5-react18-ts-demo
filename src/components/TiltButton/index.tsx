@@ -91,7 +91,7 @@ const TiltButton = (props: TiltButtonProps) => {
       buttonWrapper.current.prepend(elm);
     }
   };
-  
+
   return (
     <div className={styles.container} {...props}>
       <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
