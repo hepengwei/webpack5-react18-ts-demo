@@ -156,10 +156,10 @@ module.exports = function (webpackEnv) {
           ],
         },
         {
-          test: /\.(eot|ttf|woff|woff2)$/,
+          test: /\.(eot|ttf|woff|woff2|json)$/,
           type: "asset/resource",
           generator: {
-            filename: "fonts/[contenthash:8][ext][query]",
+            filename: "assets/[name][ext][query]",
           },
         },
       ],

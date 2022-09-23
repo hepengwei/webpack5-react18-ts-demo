@@ -1,25 +1,39 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .text {
-    color: red;
-  }
-  input {
-    width: 400px;
-    margin-bottom: 20px;
-  }
-  img {
-    width: 500px;
-    height: 250px;
-  }
-  .myBox {
+  width: 100%;
+  position: relative;
+  .content {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
+    .text {
+      color: red;
     }
+    input {
+      width: 400px;
+      height: 26px;
+      margin-bottom: 20px;
+      pointer-events: all;
+      margin-top: 10px;
+      padding: 0 6px;
+    }
+    img {
+      width: 500px;
+      height: 250px;
+    }
+    .myBox {
+      display: flex;
+      align-items: center;
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .peopleAnimation {
+    position: absolute;
+    top: 140px;
+    right: 140px;
   }
 }

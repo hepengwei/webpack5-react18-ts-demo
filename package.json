@@ -50,6 +50,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "particles.js": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tilt": "^0.1.4"
