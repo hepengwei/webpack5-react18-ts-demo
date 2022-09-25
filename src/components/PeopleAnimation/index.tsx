@@ -7,10 +7,10 @@ import people from "images/people.png";
 import gift from "images/gift.png";
 import styles from "./index.module.less";
 
-const a = 120; // 椭圆轨迹的长半径
-const b = 60; // 椭圆轨迹的短半径
+const a = 100; // 椭圆轨迹的长半径
+const b = 50; // 椭圆轨迹的短半径
 const direction = "CCW"; // 逆时针
-const speed = 3; // 运动速度
+const speed = 2; // 运动速度
 const rotate = 45; // 椭圆轨迹的旋转角度
 
 // 根据当前坐标获取椭圆下一个点的坐标数据
@@ -89,31 +89,6 @@ const PeopleAnimation = () => {
       yDirectionNow = -1;
     }
     function loop() {
-      //   gsap.set("#peopleAni", { x: 50, y: 30, rotate: 8 });
-      //   const timeline = gsap.timeline();
-      //   timeline.to("#peopleAni", {
-      //     x: 0,
-      //     y: 20,
-      //     duration: 1,
-      //     // ease: "ease-out",
-      //     rotate: 4,
-      //   });
-      //   timeline.to("#peopleAni", {
-      //     x: -30,
-      //     y: 50,
-      //     duration: 2,
-      //     ease: "elastic",
-      //     rotate: 1,
-      //   });
-      //   timeline.to("#peopleAni", {
-      //     x: 20,
-      //     y: 80,
-      //     duration: 2,
-      //     ease: "elastic",
-      //     rotate: 4,
-      //   });
-      //   timeline.play();
-
       if (content.current) {
         const rotateData = getEllipseRotateData(toOX, toOY, rotate);
         const { rotateX, rotateY } = rotateData;
@@ -126,7 +101,6 @@ const PeopleAnimation = () => {
           newSpeed = speed * Math.pow(Math.cos(toOX / a), 2);
         }
         console.log(4444, newSpeed);
-        // newSpeed = speed * (Math.abs(toOX)/100);
 
         const nextData = getEllipseNextData(
           a,
