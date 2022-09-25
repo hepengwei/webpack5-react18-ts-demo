@@ -3,6 +3,7 @@ import banner from "images/banner.png";
 import Twitter from "images/Twitter.svg";
 import TiltButton from "components/TiltButton";
 import PeopleAnimation from "components/PeopleAnimation";
+import PeopleAnimation2 from "components/PeopleAnimation/index2";
 import styles from "./index.module.less";
 
 const Test = () => {
@@ -18,7 +19,7 @@ const Test = () => {
       </div>
       
       <div className={styles.peopleAnimation}>
-        <PeopleAnimation />
+        <PeopleAnimation2 />
       </div>
     </div>
   );
