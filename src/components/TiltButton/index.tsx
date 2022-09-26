@@ -94,7 +94,7 @@ const TiltButton = (props: TiltButtonProps) => {
 
   return (
     <div className={styles.container} {...props}>
-      <Tilt className="Tilt" options={{ max: 25, scale: 1.1 }}>
+      <Tilt className="Tilt" options={{ max: 30, scale: 1.1 }}>
         <div className={styles.buttonWrapper} ref={buttonWrapper}>
           <button style={finallyButtonStyle} onClick={explode}>
             {children}
