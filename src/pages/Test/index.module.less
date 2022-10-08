@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: hidden;
   .content {
     display: flex;
     flex-direction: column;
@@ -33,27 +34,33 @@
   }
 
   .peopleAnimation {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
     position: absolute;
-    bottom: 10%;
-    right: 8%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin-right: 4%;
   }
 
   @media screen and (min-width: 1800px) and (max-width: 2300px) {
     .peopleAnimation {
-      bottom: 10%;
-      right: 6%;
+      margin-right: 4%;
     }
   }
-  @media screen and (min-width: 1400px) and (max-width: 1800px) {
+  @media screen and (min-width: 1200px) and (max-width: 1800px) {
     .peopleAnimation {
-      bottom: 6%;
-      right: 3%;
+      margin-right: 6%;
     }
   }
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1200px) {
     .peopleAnimation {
-      bottom: 3%;
-      right: 2%;
+      margin-right: 8%;
     }
   }
 }

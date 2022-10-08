@@ -20,6 +20,7 @@ const speed = 1.5; // 运动速度
 let rotate = 0; // 椭圆轨迹的旋转角度
 let transformX = 0; // 椭圆在x轴上的平移距离
 let transformY = 0; // 椭圆在y轴上的平移距离
+let vXG = 0.1; // 币在x方向的阻力系数
 
 let shouldCoinsMoving = false;
 let isCoinsMoving = false;
@@ -27,31 +28,38 @@ let isCoinsMoving = false;
 const initIconPos = {
   icon1: {
     top: 60,
-    left: 20,
+    left: 32,
+    vx: -4.5,
   },
   icon2: {
     top: 30,
-    left: 24,
+    left: 34,
+    vx: -3,
   },
   icon3: {
     top: 50,
-    left: 26,
+    left: 36,
+    vx: 0,
   },
   icon4: {
     top: 80,
-    left: 32,
+    left: 38,
+    vx: 1,
   },
   icon5: {
     top: 36,
-    left: 36,
+    left: 40,
+    vx: 3,
   },
   icon6: {
     top: 60,
-    left: 38,
+    left: 42,
+    vx: 2,
   },
   icon7: {
     top: 90,
-    left: 42,
+    left: 44,
+    vx: 5,
   },
 };
 // 币掉落时相关的数据
@@ -59,7 +67,7 @@ const iconData = {
   icon1: {
     top: initIconPos.icon1.top,
     left: initIconPos.icon1.left,
-    vx: -1,
+    vx: -4.5,
     vy: 0,
     g: 0.2,
     opacity: 0,
@@ -68,9 +76,9 @@ const iconData = {
   icon2: {
     top: initIconPos.icon2.top,
     left: initIconPos.icon2.left,
-    vx: -1,
+    vx: -3,
     vy: 0,
-    g: 0.5,
+    g: 0.3,
     opacity: 0,
     isMoving: false,
   },
@@ -86,16 +94,16 @@ const iconData = {
   icon4: {
     top: initIconPos.icon4.top,
     left: initIconPos.icon4.left,
-    vx: 0,
+    vx: 1,
     vy: 0,
-    g: 0.4,
+    g: 0.3,
     opacity: 0,
     isMoving: false,
   },
   icon5: {
     top: initIconPos.icon5.top,
     left: initIconPos.icon5.left,
-    vx: 1,
+    vx: 3,
     vy: 0,
     g: 0.4,
     opacity: 0,
@@ -113,7 +121,7 @@ const iconData = {
   icon7: {
     top: initIconPos.icon7.top,
     left: initIconPos.icon7.left,
-    vx: 1,
+    vx: 5,
     vy: 0,
     g: 0.3,
     opacity: 0,
@@ -223,11 +231,10 @@ const PeopleAnimation = () => {
         const { transitionX, transitionY } = transitionPos;
         const nativeNode = ReactDOM.findDOMNode(content.current);
         if (content.current.offsetWidth < 350) {
-          coinMaxTop = 400;
-        }else if(content.current.offsetWidth < 400){
           coinMaxTop = 500;
+        } else if (content.current.offsetWidth < 400) {
+          coinMaxTop = 550;
         }
-        console.log(32454, content.current.offsetWidth);
 
         nativeNode.style.left = `${transitionX}px`;
         nativeNode.style.top = `${-transitionY}px`;
@@ -252,6 +259,9 @@ const PeopleAnimation = () => {
           } else {
             direction = "CCW";
           }
+          // 开始播放币掉落
+          shouldCoinsMoving = true;
+          isCoinsMoving = true;
         }
         if (Math.abs(toOX) > a * 0.2) {
           newSpeed = speed * Math.pow(Math.cos(toOX / a), 2);
@@ -285,6 +295,16 @@ const PeopleAnimation = () => {
                 const initPos = initIconPos[key];
                 let nextTop = top + vy;
                 let nextLeft = left + vx;
+                let nextVx = vx;
+                if (Math.abs(vx) > vXG) {
+                  if (vx > 0) {
+                    nextVx = vx - vXG;
+                  } else {
+                    nextVx = vx + vXG;
+                  }
+                } else {
+                  nextVx = 0;
+                }
                 let hasMoveY = nextTop - initPos.top;
                 const allMoveY = coinMaxTop - initPos.top;
                 const shouldMoveY = (allMoveY / 2) * 0.45;
@@ -302,11 +322,13 @@ const PeopleAnimation = () => {
                 if (nextTop === 0) {
                   nextTop = initPos.top;
                   nextLeft = initPos.left;
+                  nextVx = initPos.vx;
                   nextIsMoving = true;
                 } else if (nextTop >= coinMaxTop) {
                   nextTop = 0;
                   nextLeft = 0;
                   nextOpacity = 0;
+                  nextVx = 0;
                   nextVy = 0;
                   nextIsMoving = false;
                 } else {
@@ -322,6 +344,7 @@ const PeopleAnimation = () => {
                 Object.assign(item, {
                   top: nextTop,
                   left: nextLeft,
+                  vx: nextVx,
                   vy: nextVy,
                   isMoving: nextIsMoving,
                 });

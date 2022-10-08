@@ -61,6 +61,10 @@ module.exports = function (webpackEnv) {
     mode: webpackEnv,
     target: ["browserslist"],
     entry: resolveApp("src/index.tsx"),
+    output: {
+      filename: "[name].js",
+      path: resolveApp("build"),
+    },
     resolve: {
       modules: [resolveApp("src"), "node_modules"],
       mainFiles: ["index"],

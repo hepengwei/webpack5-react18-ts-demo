@@ -2,7 +2,7 @@ import React from "react";
 import banner from "images/banner.png";
 import Twitter from "images/Twitter.svg";
 import TiltButton from "components/TiltButton";
-import PeopleAnimation from "components/PeopleAnimation/index2";
+import PeopleAnimation from "@/components/PeopleAnimation";
 import styles from "./index.module.less";
 
 const Test = () => {
